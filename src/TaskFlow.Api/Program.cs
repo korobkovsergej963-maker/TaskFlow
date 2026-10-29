@@ -17,13 +17,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Создаём таблицы при старте, если их нет.
-// TODO (задача 1 в TODO.md): заменить на миграции EF Core.
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
-}
 
 if (app.Environment.IsDevelopment())
 {
