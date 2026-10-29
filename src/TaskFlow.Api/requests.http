@@ -1,0 +1,26 @@
+### Запросы для проверки (в Visual Studio / Rider открой файл и жми «Send»)
+@host = http://localhost:5080
+
+### Создать проект
+POST {{host}}/api/projects
+Content-Type: application/json
+
+{ "name": "Сайт портфолио", "key": "WEB", "description": "Личный сайт" }
+
+### Список проектов
+GET {{host}}/api/projects
+
+### Создать задачу
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{ "projectId": 1, "title": "Сверстать главную", "priority": "High" }
+
+### Новые задачи
+GET {{host}}/api/tasks?status=New
+
+### Закрыть задачу
+PATCH {{host}}/api/tasks/1/status
+Content-Type: application/json
+
+{ "status": "Done" }
