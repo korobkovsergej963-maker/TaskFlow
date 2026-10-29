@@ -22,7 +22,9 @@ public class ProjectsController : ControllerBase
         var query = _db.Projects.AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(search))
-            query = query.Where(p => p.Name.Contains(search) || p.Key.Contains(search));
+            query = query.Where(p => EF.Functions.ILike(p.Name, $"%{search}%") || EF.Functions.ILike(p.Key, $"%{search}%"));
+
+
 
         // LINQ-запрос, EF превращает его в SQL с подзапросом COUNT
         var result = await query
